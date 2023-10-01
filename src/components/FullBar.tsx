@@ -19,17 +19,22 @@ const Div = styled.div``;
 
 //============================================================= FULL BAR =================================================================
 
-const FullBar = ({index, data, order, width, decorationWidth, elements, id=undefined, CSS="", onClickHandler=undefined}: {index: Observable<number>, data: Observable<number[]>, order: number, width: string, decorationWidth: string, elements: FullBarElementType[], id?: string, CSS?: string, onClickHandler?:  React.MouseEventHandler<HTMLDivElement> }) => {
-    const {plotData, dataMax, orientation, theme, vars} = useContext(PlotContext);
+const FullBar = ({item} : {item: Observable<{index: number, data: number[], order: number, width: string, decorationWidth: string, elements: FullBarElementType[], id: string, CSS:string}>}) => {
+    const {orientation} = useContext(PlotContext);
 
-    const trackedIndex = index.use()
-    const trackedData = data.use()
-    
-    const observedIndex = useObservable(index);
-    const observedOrder = useObservable(order);
-    // const observedData = plotData[trackedIndex];
-    const observedWidth = useObservable(width);
-    const observedDecorationWidth = useObservable(decorationWidth);
+    const index = item.index.use()
+    const data = item.data.use()
+    const order = item.order.use()
+    const width = item.width.use()
+    const decorationWidth = item.decorationWidth.use()
+    const elements = item.elements.use()
+    const CSS = item.CSS.use()
+
+    // const observedIndex = useObservable(index);
+    // // const observedOrder = useObservable(order);
+    // // const observedData = plotData[trackedIndex];
+    // const observedWidth = useObservable(width);
+    // const observedDecorationWidth = useObservable(decorationWidth);
 
     useEffect(() => {
         console.log("---->Fullbar " + index + " mounted");
@@ -70,10 +75,10 @@ const FullBar = ({index, data, order, width, decorationWidth, elements, id=undef
     const trackedFullBarDecsList = useObservable(newFullBarDecs);
 
     return (
-        <BarContext.Provider value={{index: index, order: observedOrder, data: data, width: observedWidth, decorationWidth: observedDecorationWidth}}>
+        <BarContext.Provider value={{index: item.index, order: item.order, data: item.data, width: item.width, decorationWidth: item.decorationWidth}}>
             <Div 
-                key={"full_bar_" + index.get()}
-                id={id??"full_bar_" + index.get()}
+                key={"full_bar_" + item.index.get()}
+                id={item.id.get()??"full_bar_" + item.index.get()}
                 className={"full-bar" + (orientation.get()===0?" horizontal":" vertical")}
                 style={orientation.get()===0? {display: "flex", flexDirection: "row-reverse", alignItems: "center", width: "100%", height: width, overflow: "hidden", order: order} : {display: "flex", flexDirection: "column", alignItems: "center", height: "100%", width: width, overflow: "hidden", order: order}} 
                 css={css`${CSS}`} 
