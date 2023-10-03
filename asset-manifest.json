@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/react-html-plots/static/js/main.4f8b4eee.js",
+    "main.js": "/react-html-plots/static/js/main.fd4dd76e.js",
     "static/js/787.371f67f5.chunk.js": "/react-html-plots/static/js/787.371f67f5.chunk.js",
     "index.html": "/react-html-plots/index.html",
-    "main.4f8b4eee.js.map": "/react-html-plots/static/js/main.4f8b4eee.js.map",
+    "main.fd4dd76e.js.map": "/react-html-plots/static/js/main.fd4dd76e.js.map",
     "787.371f67f5.chunk.js.map": "/react-html-plots/static/js/787.371f67f5.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.4f8b4eee.js"
+    "static/js/main.fd4dd76e.js"
   ]
 }
