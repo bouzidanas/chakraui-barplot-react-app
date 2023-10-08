@@ -65,7 +65,7 @@ const BarDecoration = ({item} : {item: Observable<{decIndex: number, id: string 
                 if(newMarkup??"".includes("{{$dataValue}}")) newMarkup = newMarkup?.replace(`{{$dataValue}}`, trackedData[dIndex && dIndex < data.length ? dIndex : 0]?.toString());
             }
             if (item.useDataMax?.get()){
-                if(newMarkup??"".includes("{{$dataValue}}")) newMarkup = newMarkup?.replace(`{{$dataMaxValue}}`, trackedDataMax?.toString());
+                if(newMarkup??"".includes("{{$dataMaxValue}}")) newMarkup = newMarkup?.replace(`{{$dataMaxValue}}`, trackedDataMax?.toString());
             }
         }
         const sanitizedMarkup = DOMPurify.sanitize(newMarkup??"");

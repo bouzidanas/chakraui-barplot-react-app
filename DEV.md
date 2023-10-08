@@ -35,6 +35,15 @@ All containers and components should be able to respond to mouse/touch events. H
 
 This project was inspired by a non-react svg plotting library and as a result, extra effort is required to restructure the pieces into react components that people will find intuitive to use and follow common design configurations. Currently, the plan is to provide BOTH black-box react components (where you dont have to worry/care about whats inside after you have created/chosen the templates) and your typical react components where you can set things up so that all inner elements are accessable at the top level.
 
+### What needs to be implemented
+
+ - [ ] All component props should be normal types and NOT observables. We need to avoid observables as props for as many components as possible to avoid forcing developers who embed these components into their apps into converting their props into observables.
+ - [ ] Inside each component, use useObservable to convert only the props that are expected to change and whose changes effect the component itself and not its children into observables. 
+    - [ ] Track only observables (via `use()`) or values computed from the observables (via `useSelector()`) in the component. By tracked, I mean that the component should re-render when the tracked observable or value changes. 
+ - [ ] There should be no prop drilling if possible (the Legend-State `<For>` component may be an exception). Instead, use wrapper functions (Function components) to provide the required context to each component. For example, this DecorationRect component is a wrapper for the Rect component (which is unopinionated). 
+ - [ ] Also, pass children ReactNodes as props so that the JSX that is placed inside the component tags getspassed into the component. 
+    - [ ] Wrapper components must also receive children ReactNodes as props and pass them to the wrapped component.
+
 ## Cleanup
 
  - [ ] add interface props for all components

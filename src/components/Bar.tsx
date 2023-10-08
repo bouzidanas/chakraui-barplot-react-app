@@ -13,7 +13,16 @@ enableReactUse();
 
 const Div = styled.div``;
 
-const Bar = ({ item }:{item: Observable<{id: string | undefined, barIndex: number, order: number | undefined, CSS: string | undefined, markup: string | undefined}>}) => {
+export interface BarProps 
+    {
+        id: string | undefined, 
+        barIndex: number, 
+        order: number | undefined, 
+        CSS: string | undefined, 
+        markup: string | undefined
+    }
+
+const Bar = ({ item }:{item: Observable<BarProps>}) => {
     const {index, data} = useContext(BarContext);
     const {dataMax, theme, orientation, vars} = useContext(PlotContext);
 

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import styled from '@emotion/styled';
-import Bar from './Bar';
+import Bar, { BarProps } from './Bar';
 import BarDecoration from './BarDecoration';
 import BarElementType from './types/BarElementType';
 import BarContext from './BarContext';
@@ -20,7 +20,7 @@ const BarAndDecContainer = ({item} : {item: Observable<{barIndex: number, elemen
     const renderCount = ++useRef(0).current;
     console.log("BarAndDecContainer render count: " + renderCount);
 
-    const {dataMax, theme, orientation} = useContext(PlotContext);
+    const {theme, orientation} = useContext(PlotContext);
     const {data} = useContext(BarContext);
 
     const barIndex = item.barIndex.use()
@@ -31,7 +31,7 @@ const BarAndDecContainer = ({item} : {item: Observable<{barIndex: number, elemen
 
     const trackedData = useObservable(() => {
         const untrackedData = data.peek();
-        const newData : {id: string | undefined, barIndex: number, order: number | undefined, CSS: string | undefined, markup: string | undefined}[] = [];
+        const newData : BarProps[] = [];
         untrackedData.forEach((value, i) => {
             const element = elements.find(element => element.type === "bar" && (element.isDefault??(element.dataIndex??[0]).includes(i)))
             if (element !== undefined){ 
